@@ -38,9 +38,8 @@ class ArticleRepositoryTest {
 
         //when
         articleRepository.save(article);
-//        Article createdArticle = articleRepository.getArticleRepository().get(1L);
 
-        Article createdArticle = articleRepository.findById(1L);
+        Article createdArticle = articleRepository.getDatabase().get(1L);
 
         log.info("createdArticle : " + createdArticle);
 

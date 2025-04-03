@@ -18,25 +18,25 @@ public class ArticleRepository {
     private long PRIMARY_ID = 1;
 
     //DB
-    private Map<Long, Article> articleRepository = new HashMap<>();
+    private Map<Long, Article> database = new HashMap<>();
 
     public Long save(Article article) {
         log.info("Primary ID: " + PRIMARY_ID);
-        articleRepository.put(PRIMARY_ID, article);
+        database.put(PRIMARY_ID, article);
         return PRIMARY_ID++;
     }
 
     public Article findById(long id) {
-        return articleRepository.get(id);
+        return database.get(id);
     }
 
     public List<Article> findAll() {
-        return new ArrayList<>(articleRepository.values());
+        return new ArrayList<>(database.values());
     }
 
     public List<Article> findAllByTitle(String title) {
         List<Article> articles = new ArrayList<>();
-        for (Article article : articleRepository.values()) {
+        for (Article article : database.values()) {
             if (article.getTitle().contains(title)) {
                 articles.add(article);
             }
@@ -45,7 +45,7 @@ public class ArticleRepository {
     }
 
     public void tearDown(){
-        articleRepository.clear();
+        database.clear();
         PRIMARY_ID = 1;
     }
 }
